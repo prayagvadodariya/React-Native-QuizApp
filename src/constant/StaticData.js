@@ -1,6 +1,6 @@
 export const QuizList=[
     { id: 1,
-      title: 'choose',  
+      title: 'Choose',  
       image: require('../assets/images/1.png')
     },
     { id: 2,
