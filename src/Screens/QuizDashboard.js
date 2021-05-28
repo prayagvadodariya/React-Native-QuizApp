@@ -40,7 +40,7 @@ const QuizDashboard = (props) => {
             uncheckedIcon='circle-o'
             checked={isSelected}
             iconRight={true}
-            checkedColor='#105d56'
+            checkedColor='#149981'
             uncheckedColor='#848896'
             textStyle={{flex:1,alignContent:'flex-start',alignItems:'flex-start',color:'#848896'}}
             containerStyle={{backgroundColor:'transparent', borderRadius:15, borderColor:'#848896'}}
@@ -53,7 +53,7 @@ const QuizDashboard = (props) => {
             uncheckedIcon='circle-o'
             checked={isSelected}
             iconRight={true}
-            checkedColor='#105d56'
+            checkedColor='#149981'
             uncheckedColor='#848896'
             textStyle={{flex:1,alignContent:'flex-start',alignItems:'flex-start',color:'#848896'}}
             containerStyle={{backgroundColor:'transparent', borderRadius:15, borderColor:'#848896'}}
@@ -66,7 +66,7 @@ const QuizDashboard = (props) => {
             uncheckedIcon='circle-o'
             checked={isSelected}
             iconRight={true}
-            checkedColor='#105d56'
+            checkedColor='#149981'
             uncheckedColor='#848896'
             textStyle={{flex:1,alignContent:'flex-start',alignItems:'flex-start',color:'#848896'}}
             containerStyle={{backgroundColor:'transparent', borderRadius:15, borderColor:'#848896'}}
@@ -79,7 +79,7 @@ const QuizDashboard = (props) => {
             uncheckedIcon='circle-o'
             checked={isSelected}
             iconRight={true}
-            checkedColor='#105d56'
+            checkedColor='#149981'
             uncheckedColor='#848896'
             textStyle={{flex:1,alignContent:'flex-start',alignItems:'flex-start',color:'#848896'}}
             containerStyle={{backgroundColor:'transparent', borderRadius:15, borderColor:'#848896'}}
