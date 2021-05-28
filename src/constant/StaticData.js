@@ -20,7 +20,16 @@ export const QuizList=[
             { id: "3", text: "Pear" },
             { id: "4", text: "Apple", correct: true }
           ]
-        }
+        },
+        {
+          question: " localhost's IP address?",
+          answers: [
+            { id: "1", text: "192.168.1.1" },
+            { id: "2", text: "127.0.0.1", correct: true },
+            { id: "3", text: "209.85.231.104" },
+            { id: "4", text: "66.220.149.25" }
+          ]
+        },
       ]
     },
     { id: 2,

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { CheckBox, Button} from "react-native-elements";
 import { AntDesign, Entypo, Ionicons, Feather, EvilIcons } from 'react-native-vector-icons';
+import CountDown from 'react-native-countdown-component';
 
 const QuizDashboard = (props) => {
   const [isSelected, setSelection] = useState(0);
@@ -21,20 +22,18 @@ const QuizDashboard = (props) => {
       if(iscorrectCount!=0){
       var countminus = iscorrectCount - 1;
       setCorrectCount(countminus);
-      // console.log('false',co);
       }
-      // console.log('false');
     }
   }
+
 
   const onNext = () => {
     var currentIndex =  isactiveQuestionIndex + 1;
     setActiveQuestionIndex(currentIndex);
     setSelection(0);
+  
     // props.navigation.navigate("MyStack",{ screen: 'Score',params: {score: 10}});
   }
-
-  console.log("setcounupdate",iscorrectCount);
 
   const data = props.route.params.quizname.ComputerQuiz;
   const question = data[isactiveQuestionIndex];
@@ -42,6 +41,18 @@ const QuizDashboard = (props) => {
   return (
     <View style={styles.container}>
       <View style={{marginTop:30,marginLeft:20,marginRight:20,marginBottom:20}}>
+
+        <CountDown
+          id={question.question}
+          until={60 * 1 + 0}
+          size={20}
+          onFinish={() => onNext()}
+          digitStyle={{backgroundColor: '#FFF'}}
+          digitTxtStyle={{color: '#1CC625'}}
+          timeToShow={['M', 'S']}
+          timeLabels={{m: 'Min', s: 'Sec'}}
+          timeLabelStyle={{color: '#fff', fontSize:15}}
+        />
         <Text style={{fontSize:18,color:'#585e77'}}>{props.route.params.quizname.title} Quiz</Text>
 
         <View style={{marginTop:10,flexDirection:'row'}}>
