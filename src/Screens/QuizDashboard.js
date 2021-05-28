@@ -1,11 +1,21 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Avatar ,ListItem, Button} from "react-native-elements";
+import { CheckBox, Button} from "react-native-elements";
 import { AntDesign, Entypo, Ionicons, Feather, EvilIcons } from 'react-native-vector-icons';
 
 const QuizDashboard = (props) => {
+  const [isSelected, setSelection] = useState(false);
+
+  const onselect = () => {
+    setSelection(true);
+  }
+
+  const onScore = () => {
+    props.navigation.navigate("MyStack",{ screen: 'Score',params: {score: 10}});
+  }
   console.log("pop",props);
+
   return (
     <View style={styles.container}>
       <View style={{marginTop:30,marginLeft:20,marginRight:20,marginBottom:20}}>
@@ -22,8 +32,63 @@ const QuizDashboard = (props) => {
          <Text style={{fontSize:18, color:'#fff', fontWeight:'500'}}>Sally is 54 years old and her mother is 80, how many years ago was Sally’s mother times her age?</Text>
         </View>
 
-        <View style={{flexDirection:'row', marginTop:20,marginBottom:15}}>
+        <View style={{marginTop:45}}>
+          <CheckBox
+            onPress={()=> onselect()}
+            title='39 years ago'
+            checkedIcon='dot-circle-o'
+            uncheckedIcon='circle-o'
+            checked={isSelected}
+            iconRight={true}
+            checkedColor='#105d56'
+            uncheckedColor='#848896'
+            textStyle={{flex:1,alignContent:'flex-start',alignItems:'flex-start',color:'#848896'}}
+            containerStyle={{backgroundColor:'transparent', borderRadius:15, borderColor:'#848896'}}
+          />
+
+          <CheckBox
+            onPress={()=> onselect()}
+            title='41 years ago'
+            checkedIcon='dot-circle-o'
+            uncheckedIcon='circle-o'
+            checked={isSelected}
+            iconRight={true}
+            checkedColor='#105d56'
+            uncheckedColor='#848896'
+            textStyle={{flex:1,alignContent:'flex-start',alignItems:'flex-start',color:'#848896'}}
+            containerStyle={{backgroundColor:'transparent', borderRadius:15, borderColor:'#848896'}}
+          />
+
+          <CheckBox
+            onPress={()=> onselect()}
+            title='51 years ago'
+            checkedIcon='dot-circle-o'
+            uncheckedIcon='circle-o'
+            checked={isSelected}
+            iconRight={true}
+            checkedColor='#105d56'
+            uncheckedColor='#848896'
+            textStyle={{flex:1,alignContent:'flex-start',alignItems:'flex-start',color:'#848896'}}
+            containerStyle={{backgroundColor:'transparent', borderRadius:15, borderColor:'#848896'}}
+          />
+
+          <CheckBox
+            onPress={()=> onselect()}
+            title='22 years ago'
+            checkedIcon='dot-circle-o'
+            uncheckedIcon='circle-o'
+            checked={isSelected}
+            iconRight={true}
+            checkedColor='#105d56'
+            uncheckedColor='#848896'
+            textStyle={{flex:1,alignContent:'flex-start',alignItems:'flex-start',color:'#848896'}}
+            containerStyle={{backgroundColor:'transparent', borderRadius:15, borderColor:'#848896'}}
+          />
+        </View>
+
+        <View style={{flexDirection:'row', marginTop:80,marginBottom:25}}>
           <Button
+            onPress={()=> props.navigation.navigate("BottomTabStack")}
              icon={
               <AntDesign
                 name="closecircleo"
@@ -40,6 +105,7 @@ const QuizDashboard = (props) => {
             <Button
               title="Next"
               type="solid"
+              onPress={()=> onScore()}
               titleStyle={{textAlign:'center'}}
               style={{width:130,height:50}}
               buttonStyle={{borderRadius:10, marginBottom:-10, backgroundColor:'#06d3f7'}}
