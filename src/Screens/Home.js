@@ -46,7 +46,7 @@ const Home = (props) => {
         style={{marginBottom:20}}
         keyExtractor={(item, index) => String(index)} 
         renderItem={({item}) => 
-        <TouchableOpacity style={{width: Dimensions.get('screen').width / 3 - 20, borderRadius:15, margin: 10, height:120, backgroundColor:'#fff'}} onPress={()=> props.navigation.navigate("MyStack",{ screen: 'QuizDashboard',params: {quizname: item.title}})}> 
+        <TouchableOpacity style={{width: Dimensions.get('screen').width / 3 - 20, borderRadius:15, margin: 10, height:120, backgroundColor:'#fff'}} onPress={()=> props.navigation.navigate("MyStack",{ screen: 'QuizDashboard',params: {quizname: item}})}> 
           <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
             <Image style={{ marginTop:12, width:40,height:40}}   source={item.image} />
           </View>

@@ -1,7 +1,27 @@
 export const QuizList=[
     { id: 1,
       title: 'Choose',  
-      image: require('../assets/images/1.png')
+      image: require('../assets/images/1.png'),
+      ComputerQuiz:[
+        {
+          question: "What is localhost's IP address?",
+          answers: [
+            { id: "1", text: "192.168.1.1" },
+            { id: "2", text: "127.0.0.1", correct: true },
+            { id: "3", text: "209.85.231.104" },
+            { id: "4", text: "66.220.149.25" }
+          ]
+        },
+        {
+          question: "What kind of fruit was used to name a computer in 1984?",
+          answers: [
+            { id: "1", text: "Blackberry" },
+            { id: "2", text: "Blueberry" },
+            { id: "3", text: "Pear" },
+            { id: "4", text: "Apple", correct: true }
+          ]
+        }
+      ]
     },
     { id: 2,
       title: 'Literature',  
@@ -24,3 +44,24 @@ export const QuizList=[
       image: require('../assets/images/6.png') 
     }
   ]
+
+  // export const ComputerQuiz = [
+  //   {
+  //     question: "What is localhost's IP address?",
+  //     answers: [
+  //       { id: "1", text: "192.168.1.1" },
+  //       { id: "2", text: "127.0.0.1", correct: true },
+  //       { id: "3", text: "209.85.231.104" },
+  //       { id: "4", text: "66.220.149.25" }
+  //     ]
+  //   },
+  //   {
+  //     question: "What kind of fruit was used to name a computer in 1984?",
+  //     answers: [
+  //       { id: "1", text: "Blackberry" },
+  //       { id: "2", text: "Blueberry" },
+  //       { id: "3", text: "Pear" },
+  //       { id: "4", text: "Apple", correct: true }
+  //     ]
+  //   }
+  // ];
