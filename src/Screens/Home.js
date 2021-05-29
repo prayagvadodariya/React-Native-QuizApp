@@ -9,17 +9,19 @@ const Home = (props) => {
   return (
     <View>
       <View style={styles.userLayout}>
-        <ListItem containerStyle={{backgroundColor:'transparent',marginTop:20}}>
-        <Avatar
-          rounded
-          size={40}
-          resizeMode='stretch'
-          source={{ uri: 'https://reqres.in/img/faces/8-image.jpg'}}
-        />
-        <ListItem.Content>
-          <ListItem.Title style={{color:'#fff', fontWeight:'bold'}}>Michael Lawson</ListItem.Title>
-        </ListItem.Content>
-        </ListItem>
+        <View style={{marginTop:"12%"}}>
+          <ListItem containerStyle={{backgroundColor:'transparent'}}>
+          <Avatar
+            rounded
+            size={40}
+            resizeMode='stretch'
+            source={{ uri: 'https://reqres.in/img/faces/8-image.jpg'}}
+          />
+          <ListItem.Content>
+            <ListItem.Title style={{color:'#fff', fontWeight:'bold'}}>Michael Lawson</ListItem.Title>
+          </ListItem.Content>
+          </ListItem>
+        </View>
       </View>
 
       <View style={styles.gamecard}>
