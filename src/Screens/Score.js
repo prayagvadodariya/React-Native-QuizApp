@@ -27,8 +27,8 @@ import { AntDesign, Entypo, Ionicons, Feather, EvilIcons } from 'react-native-ve
         </View>
 
         <View style={{justifyContent:'center',flexDirection:'row',marginTop:10}}>
-          <Text style={{fontSize:35, color:'#149981', marginTop:10, fontWeight:'bold'}}>10</Text>
-          <Text style={{fontSize:35, color:'#fff',marginTop:10, fontWeight:'bold'}}> / 10</Text>
+          <Text style={{fontSize:35, color:'#149981', marginTop:10, fontWeight:'bold'}}>{props.route.params.CorrectAns}</Text>
+          <Text style={{fontSize:35, color:'#fff',marginTop:10, fontWeight:'bold'}}> / {props.route.params.Total}</Text>
         </View>
 
         <View>
@@ -73,9 +73,6 @@ import { AntDesign, Entypo, Ionicons, Feather, EvilIcons } from 'react-native-ve
                <AntDesign style={{marginTop:-60}} name="closecircleo" size={35} color="#848896"/>
             </TouchableOpacity>    
         </View>
-
-        
-
       </View>
      
     </View>

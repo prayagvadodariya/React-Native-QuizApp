@@ -35,7 +35,8 @@ const QuizDashboard = (props) => {
     }else{
       setTotalCorrectAns(iscorrectCount+istotalcorrectAns)
       setCorrectCount(0)
-      props.navigation.navigate("MyStack",{ screen: 'Score',params: {score: 10}});
+      var Ans = iscorrectCount+istotalcorrectAns;
+      props.navigation.navigate("MyStack",{ screen: 'Score',params: {Total: props.route.params.quizname.Quiz.length, CorrectAns: Ans}});
     }
   }
 
