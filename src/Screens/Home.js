@@ -1,13 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {Component} from 'react';
-import { FlatList, StyleSheet, Text, View, Image, ImageBackground, TouchableOpacity, Dimensions} from 'react-native';
+import { FlatList, StyleSheet, Text, View, Image, ImageBackground, SafeAreaView, TouchableOpacity, Dimensions} from 'react-native';
 import { Avatar ,ListItem, Button} from "react-native-elements";
 import * as StaticData  from '../constant/StaticData';
 
 const Home = (props) => {
 
   return (
-    <View>
+    <SafeAreaView>
       <View style={styles.userLayout}>
         <View style={{marginTop:"12%"}}>
           <ListItem containerStyle={{backgroundColor:'transparent'}}>
@@ -56,7 +56,7 @@ const Home = (props) => {
         </TouchableOpacity>
         }
       />
-    </View>
+    </SafeAreaView>
   );
 }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { Image, StyleSheet, SafeAreaView, Text, View, TouchableOpacity } from 'react-native';
 import { Button} from "react-native-elements";
 import { AntDesign, Entypo, Ionicons, Feather, EvilIcons } from 'react-native-vector-icons';
 
@@ -10,13 +10,13 @@ import { AntDesign, Entypo, Ionicons, Feather, EvilIcons } from 'react-native-ve
  }
 
   return (
-    <View style={styles.container}>
-      <View style={{marginTop:15, marginLeft:15, marginRight:15}}>
+    <SafeAreaView style={styles.container}>
+      <View style={{flex:1,marginTop:15, marginLeft:15, marginRight:15}}>
         <View>
-         <Text style={{fontSize:20,textAlign:'center',color:'#fff',marginTop:25,fontWeight:'bold'}}>Quiz Result</Text>
+         <Text style={{fontSize:20,textAlign:'center',color:'#fff',marginTop:35,fontWeight:'bold'}}>Quiz Result</Text>
         </View>
 
-        <View style={{flex:1, justifyContent:'center', alignItems:'center', marginTop:35}}>
+        <View style={{ justifyContent:'center', alignItems:'center', marginTop:35}}>
           <Image resizeMode='stretch' style={{height: 180, width:180}} source={require('../assets/images/quizwin.png')}/>
         </View>
 
@@ -39,7 +39,7 @@ import { AntDesign, Entypo, Ionicons, Feather, EvilIcons } from 'react-native-ve
           </View>  
         </View>
 
-        <View style={{marginTop:35}}>
+        <View style={{marginTop:45}}>
           <View style={{flexDirection:'row'}}>
             <View style={{flex:1,alignContent:'flex-start',alignItems:'flex-start'}}>
             <Button
@@ -54,7 +54,6 @@ import { AntDesign, Entypo, Ionicons, Feather, EvilIcons } from 'react-native-ve
                 title="Share Score"
                 type="solid"
                 titleStyle={{textAlign:'center',color:'#848896'}}
-                style={{width:150,height:150}}
                 buttonStyle={{borderRadius:10, backgroundColor:'#fff'}}
               />
               </View>
@@ -64,18 +63,17 @@ import { AntDesign, Entypo, Ionicons, Feather, EvilIcons } from 'react-native-ve
                   type="solid"
                   onPress={()=> onBack()}
                   titleStyle={{textAlign:'center'}}
-                  style={{width:150,height:150}}
                   buttonStyle={{borderRadius:10, backgroundColor:'#06d3f7'}}
                 />
               </View>
             </View>
             <TouchableOpacity style={{alignItems:'center'}} onPress={()=> onBack()}>
-               <AntDesign style={{marginTop:-60}} name="closecircleo" size={35} color="#848896"/>
+               <AntDesign style={{marginTop:25}} name="closecircleo" size={35} color="#848896"/>
             </TouchableOpacity>    
         </View>
       </View>
      
-    </View>
+    </SafeAreaView>
   );
 }
 

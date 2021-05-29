@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, SafeAreaView, Text, View } from 'react-native';
 import { CheckBox, Button} from "react-native-elements";
 import { AntDesign, Entypo, Ionicons, Feather, EvilIcons } from 'react-native-vector-icons';
 import CountDown from 'react-native-countdown-component';
@@ -44,8 +44,8 @@ const QuizDashboard = (props) => {
   const question = data[isactiveQuestionIndex];
 
   return (
-    <View style={styles.container}>
-      <View style={{marginTop:30,marginLeft:20,marginRight:20,marginBottom:20}}>
+    <SafeAreaView  style={styles.container}>
+      <View style={{flex:1, marginTop:"15%",marginLeft:20,marginRight:20,marginBottom:20}}>
 
         <CountDown
           id={question.question}
@@ -67,11 +67,11 @@ const QuizDashboard = (props) => {
 
         <Text style={{fontSize:25, color:'#585e77'}}>- - - - - - - - - - - - - - - - - - - - - - </Text>
 
-        <View style={{marginTop:35}}>
-         <Text style={{fontSize:18, color:'#fff', fontWeight:'500'}}>{question.question}</Text>
+        <View style={{marginTop:5}}>
+         <Text style={{fontSize:17, color:'#fff'}}>{question.question}</Text>
         </View>
 
-        <View style={{marginTop:45}}>
+        <View style={{marginTop:25}}>
         {question.answers.map(answer => (
           <CheckBox
             key={answer.id}
@@ -89,7 +89,7 @@ const QuizDashboard = (props) => {
           ))}
         </View>
 
-        <View style={{flexDirection:'row', marginTop:80,marginBottom:25}}>
+        <View style={{flex:1, flexDirection:'row', justifyContent:'flex-end', alignItems:'flex-end'}}>
           <Button
             onPress={()=> props.navigation.navigate("BottomTabStack")}
              icon={
@@ -109,16 +109,14 @@ const QuizDashboard = (props) => {
               title="Next"
               type="solid"
               onPress={()=> onNext()}
-              titleStyle={{textAlign:'center'}}
-              style={{width:130,height:50}}
-              buttonStyle={{borderRadius:10, marginBottom:-10, backgroundColor:'#06d3f7'}}
+              titleStyle={{textAlign:'center', marginLeft:40,marginRight:40}}
+              buttonStyle={{borderRadius:10, backgroundColor:'#06d3f7'}}
             />
           </View>
-
         </View>
       </View>
     
-    </View>
+    </SafeAreaView>
   );
 }
 
