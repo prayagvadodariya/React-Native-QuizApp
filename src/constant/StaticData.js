@@ -2,7 +2,7 @@ export const QuizList=[
     { id: 1,
       title: 'Choose',  
       image: require('../assets/images/1.png'),
-      ComputerQuiz:[
+      Quiz:[
         {
           question: "What is localhost's IP address?",
           answers: [

@@ -9,6 +9,7 @@ const QuizDashboard = (props) => {
   const [isSelected, setSelection] = useState(0);
   const [isactiveQuestionIndex, setActiveQuestionIndex] = useState(0);
   const [iscorrectCount, setCorrectCount] = useState(0);
+  const [isquestion, setQuestion] = useState(1);
 
   console.log("pop",props);
   
@@ -28,14 +29,18 @@ const QuizDashboard = (props) => {
 
 
   const onNext = () => {
-    var currentIndex =  isactiveQuestionIndex + 1;
-    setActiveQuestionIndex(currentIndex);
-    setSelection(0);
-  
-    // props.navigation.navigate("MyStack",{ screen: 'Score',params: {score: 10}});
+   var currentIndex =  isactiveQuestionIndex + 1;
+
+    if(data[currentIndex]!=undefined){
+      setActiveQuestionIndex(currentIndex);
+      setSelection(0);
+      setQuestion(isquestion+1)
+    }else{
+      props.navigation.navigate("MyStack",{ screen: 'Score',params: {score: 10}});
+    }
   }
 
-  const data = props.route.params.quizname.ComputerQuiz;
+  const data = props.route.params.quizname.Quiz;
   const question = data[isactiveQuestionIndex];
 
   return (
@@ -56,8 +61,8 @@ const QuizDashboard = (props) => {
         <Text style={{fontSize:18,color:'#585e77'}}>{props.route.params.quizname.title} Quiz</Text>
 
         <View style={{marginTop:10,flexDirection:'row'}}>
-          <Text style={{fontSize:25, color:'#fff', fontWeight:'bold'}}>Quetion 06</Text>
-          <Text style={{fontSize:25, color:'#585e77', fontWeight:'bold'}}>/10</Text>
+          <Text style={{fontSize:25, color:'#fff', fontWeight:'bold'}}>Quetion {isquestion}</Text>
+          <Text style={{fontSize:25, color:'#585e77', fontWeight:'bold'}}>/{data.length}</Text>
         </View>
 
         <Text style={{fontSize:25, color:'#585e77'}}>- - - - - - - - - - - - - - - - - - - - - - </Text>
