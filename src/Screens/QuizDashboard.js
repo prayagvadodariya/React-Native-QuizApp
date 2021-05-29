@@ -7,35 +7,34 @@ import CountDown from 'react-native-countdown-component';
 
 const QuizDashboard = (props) => {
   const [isSelected, setSelection] = useState(0);
-  const [isactiveQuestionIndex, setActiveQuestionIndex] = useState(0);
   const [iscorrectCount, setCorrectCount] = useState(0);
+  const [isactiveQuestionIndex, setActiveQuestionIndex] = useState(0);
   const [isquestion, setQuestion] = useState(1);
+  const [istotalcorrectAns, setTotalCorrectAns] = useState(0);
 
-  console.log("pop",props);
-  
   const onselect = (val) => {
     setSelection(val.id);
+    console.log('onselect',val);
     if(val.correct){
-      var countplush = iscorrectCount + 1;
-      setCorrectCount(countplush);
-      // console.log('true',true);
-    }else {
-      if(iscorrectCount!=0){
-      var countminus = iscorrectCount - 1;
-      setCorrectCount(countminus);
-      }
+      setCorrectCount(iscorrectCount+1);
+      console.log('check',);
+    }else{
+      setCorrectCount(0);
     }
   }
-
-
+ 
   const onNext = () => {
+   setSelection(0)
    var currentIndex =  isactiveQuestionIndex + 1;
 
     if(data[currentIndex]!=undefined){
       setActiveQuestionIndex(currentIndex);
-      setSelection(0);
       setQuestion(isquestion+1)
+      setTotalCorrectAns(iscorrectCount+istotalcorrectAns)
+      setCorrectCount(0)
     }else{
+      setTotalCorrectAns(iscorrectCount+istotalcorrectAns)
+      setCorrectCount(0)
       props.navigation.navigate("MyStack",{ screen: 'Score',params: {score: 10}});
     }
   }
