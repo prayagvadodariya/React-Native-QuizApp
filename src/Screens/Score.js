@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Image, StyleSheet, SafeAreaView, Text, View, TouchableOpacity } from 'react-native';
 import { Button} from "react-native-elements";
 import { AntDesign, Entypo, Ionicons, Feather, EvilIcons } from 'react-native-vector-icons';
 
  const Score = (props) => {
+
+  let testscore = (props.route.params.CorrectAns/props.route.params.Total) *100
+
+  useEffect(() => {
+  if(testscore >= 50){
+    console.log("A",testscore);
+  }else if(testscore >= 35){
+    console.log("b", testscore);
+  }else if(testscore >= 0){
+    console.log("c", testscore);
+  }
+},[])
 
  const onBack = () => {
   props.navigation.navigate("BottomTabStack")
