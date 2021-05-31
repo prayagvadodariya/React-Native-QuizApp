@@ -1,30 +1,118 @@
 import { StatusBar } from 'expo-status-bar';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { StyleSheet, SafeAreaView, TextInput, Text, View } from 'react-native';
 import { Button } from 'react-native-elements';
+import firebase from '../services/firebaseServices';
+// import ModalDropdown from 'react-native-modal-dropdown';
+
 
 const AddQuiz = () => {
+  const [quizselect, onQuizselect] = useState();
   const [quiztitile, onQuizTitle] = useState('');
   const [question, onQuestion] = useState('');
   const [optionA, onOptionA] = useState('');
   const [optionB, onOptionB] = useState('');
   const [optionC, onOptionC] = useState('');
   const [optionD, onOptionD] = useState('');
+  const [correctAnswer, onCorrectAnswer] = useState('');
 
+
+  const data = [{
+    value: 'Banana',
+  }, {
+    value: 'Mango',
+  }, {
+    value: 'Pear',
+  }];
+
+
+  useEffect(() => {
+    const dbRef = firebase.database().ref();
+    dbRef.child("quizList").get().then((snapshot) => {
+      if (snapshot.exists()) {
+        onQuizselect(snapshot.val());
+        var t = new Date().valueOf();
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+  },[])
+
+
+  const onAddNewQuiz = () => {
+   var  data = {
+    title: quiztitile,
+    question: question,
+    "0" : optionA,
+    "1" : optionB,
+    "2" : optionC,
+    "3" : optionD,
+    answers: correctAnswer,
+   } 
+  //  console.log('add quiz',data);
+   onSet(data)
+  }
+
+  const onSet = (data) => {
+    if(data.answers==='B'){
+      var answers = {
+        "0" : { id: "1", text: data[0] },
+        "1" : { id: "2", text: data[1], correct: true },
+        "2" : { id: "3", text: data[2] },
+        "3" : { id: "4", text: data[3] }
+       }
+    }else if(data.answers==='A') {
+      var answers = {
+        "0" : { id: "1", text: data[0], correct: true  },
+        "1" : { id: "2", text: data[1] },
+        "2" : { id: "3", text: data[2] },
+        "3" : { id: "4", text: data[3] }
+       }  
+
+    }else if(data.answers==='C') {
+      var answers = {
+        "0" : { id: "1", text: data[0] },
+        "1" : { id: "2", text: data[1] },
+        "2" : { id: "3", text: data[2], correct: true },
+        "3" : { id: "4", text: data[3] }
+       }
+
+    }else if(data.answers==='D') {
+      var answers = {
+        "0" : { id: "1", text: data[0] },
+        "1" : { id: "2", text: data[1] },
+        "2" : { id: "3", text: data[2] },
+        "3" : { id: "4", text: data[3], correct: true }
+       }
+    }
+    firebase
+      .database()
+      .ref('quizList/' + new Date().valueOf())
+      .set({
+        // title: data.title,  
+        // image: require('../assets/images/1.png'),
+        Quiz:
+          {
+            question: data.question,
+            answers: answers
+          }
+      });
+    
+  }
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.layout}>
 
-        <View>
-          <Text style={styles.t1}>Quiz Name</Text>
-          <TextInput
-            style={styles.input}
-            onChangeText={onQuizTitle}
-            value={quiztitile}
-            placeholder="Enter Quiz Name"
+        
+        
+          <Dropdown
+          label='Favorite Fruit'
+          data={data}
           />
-        </View>
+        
 
         <View>
           <Text style={styles.t1}>Question</Text>
@@ -73,6 +161,16 @@ const AddQuiz = () => {
             onChangeText={onOptionD}
             value={optionD}
             placeholder="Enter Option D"
+          />
+        </View>
+
+        <View>
+          <Text style={styles.t1}>Correct Answer</Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={onCorrectAnswer}
+            value={correctAnswer}
+            placeholder="Enter Option(Ex: A & B & C & D)"
           />
         </View>
 

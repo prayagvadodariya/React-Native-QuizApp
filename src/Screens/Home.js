@@ -21,27 +21,26 @@ const Home = (props) => {
   },[])
 
 
-  const AddQuiz = () => {
-    var id = "0"
-    var score = "50"
-    firebase
-      .database()
-      .ref('quizList/' + id)
-      .set({
-        title: 'Choose1',  
-        image: require('../assets/images/1.png'),
-        Quiz:
-          {
-            question: "What is localhost's IP address?",
-            answers: {
-             "0" : { id: "1", text: "192.168.1.1" },
-             "1" : { id: "2", text: "127.0.0.1", correct: true },
-             "2" : { id: "3", text: "209.85.231.104" },
-             "3" : { id: "4", text: "66.220.149.25" }
-            }
-          }
-      });
-  }
+  // const AddQuiz = () => {
+  //   var id = "0"
+  //   firebase
+  //     .database()
+  //     .ref('quizList/' + id)
+  //     .set({
+  //       title: 'Choose1',  
+  //       image: require('../assets/images/1.png'),
+  //       Quiz:
+  //         {
+  //           question: "What is localhost's IP address?",
+  //           answers: {
+  //            "0" : { id: "1", text: "192.168.1.1" },
+  //            "1" : { id: "2", text: "127.0.0.1", correct: true },
+  //            "2" : { id: "3", text: "209.85.231.104" },
+  //            "3" : { id: "4", text: "66.220.149.25" }
+  //           }
+  //         }
+  //     });
+  // }
 
   return (
     <SafeAreaView>
