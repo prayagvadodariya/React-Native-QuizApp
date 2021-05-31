@@ -1,19 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Image, StyleSheet, SafeAreaView, Text, View, TouchableOpacity } from 'react-native';
 import { Button} from "react-native-elements";
 import { AntDesign, Entypo, Ionicons, Feather, EvilIcons } from 'react-native-vector-icons';
 
  const Score = (props) => {
-
+  const [iswish, setWish] = useState('');
   let testscore = (props.route.params.CorrectAns/props.route.params.Total) *100
 
   useEffect(() => {
-  if(testscore >= 50){
-    console.log("A",testscore);
-  }else if(testscore >= 35){
-    console.log("b", testscore);
+  if(testscore >= 60){
+    setWish('Congratulations!');
+  }else if(testscore >= 50){
+    setWish('Good!')
   }else if(testscore >= 0){
-    console.log("c", testscore);
+    setWish('Better Luck Next Time!')
   }
 },[])
 
@@ -33,7 +33,7 @@ import { AntDesign, Entypo, Ionicons, Feather, EvilIcons } from 'react-native-ve
         </View>
 
         <View>
-          <Text style={{fontSize:25,textAlign:'center',color:'#fff',marginTop:15,fontWeight:'bold', fontFamily:'Courier'}}>Congratulations!</Text>
+          <Text style={{fontSize:25,textAlign:'center',color:'#fff',marginTop:15,fontWeight:'bold', fontFamily:'Courier'}}>{iswish}</Text>
           <Text style={{fontSize:18,textAlign:'center',color:'#a7acbc',marginTop:5}}>You have successfully complete this Quiz</Text>
           <Text style={{fontSize:18,textAlign:'center',color:'#848896',marginTop:10}}>YOUR SCORE</Text>
         </View>
