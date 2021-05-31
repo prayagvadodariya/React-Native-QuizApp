@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, {Component} from 'react';
+import React, {Component, useEffect} from 'react';
 import { FlatList, StyleSheet, Text, View, Image, ImageBackground, SafeAreaView, TouchableOpacity, Dimensions} from 'react-native';
 import { Avatar ,ListItem, Button} from "react-native-elements";
 import * as StaticData  from '../constant/StaticData';
@@ -7,15 +7,39 @@ import firebase from '../services/firebaseServices';
 
 const Home = (props) => {
 
+  useEffect(() => {
+    const dbRef = firebase.database().ref();
+    dbRef.child("quizList").get().then((snapshot) => {
+      if (snapshot.exists()) {
+        console.log(snapshot.val());
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+  },[])
+
 
   const AddQuiz = () => {
-    var userId = "1"
+    var id = "0"
     var score = "50"
     firebase
       .database()
-      .ref('users/' + userId)
+      .ref('quizList/' + id)
       .set({
-        highscore: score,
+        title: 'Choose1',  
+        image: require('../assets/images/1.png'),
+        Quiz:
+          {
+            question: "What is localhost's IP address?",
+            answers: {
+             "0" : { id: "1", text: "192.168.1.1" },
+             "1" : { id: "2", text: "127.0.0.1", correct: true },
+             "2" : { id: "3", text: "209.85.231.104" },
+             "3" : { id: "4", text: "66.220.149.25" }
+            }
+          }
       });
   }
 
