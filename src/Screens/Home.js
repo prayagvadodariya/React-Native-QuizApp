@@ -3,8 +3,21 @@ import React, {Component} from 'react';
 import { FlatList, StyleSheet, Text, View, Image, ImageBackground, SafeAreaView, TouchableOpacity, Dimensions} from 'react-native';
 import { Avatar ,ListItem, Button} from "react-native-elements";
 import * as StaticData  from '../constant/StaticData';
+import firebase from '../services/firebaseServices';
 
 const Home = (props) => {
+
+
+  const AddQuiz = () => {
+    var userId = "1"
+    var score = "50"
+    firebase
+      .database()
+      .ref('users/' + userId)
+      .set({
+        highscore: score,
+      });
+  }
 
   return (
     <SafeAreaView>
@@ -33,6 +46,7 @@ const Home = (props) => {
           <Text style={{fontSize:20, fontWeight:'bold'}}>Top Quiz Categories</Text>
           <View style={{flex:1,alignContent:'flex-end',alignItems:'flex-end'}}>
             <Button
+            onPress={() => AddQuiz()}
             title="View All"
             type="outline"
             titleStyle={{fontSize:12, fontWeight:'bold'}}
