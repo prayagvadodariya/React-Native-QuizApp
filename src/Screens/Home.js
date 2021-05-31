@@ -57,6 +57,7 @@ const Home = (props) => {
           <ListItem.Content>
             <ListItem.Title style={{color:'#fff', fontWeight:'bold'}}>Michael Lawson</ListItem.Title>
           </ListItem.Content>
+          <ListItem.Chevron onPress={()=> props.navigation.navigate("UserAddQuiz",{ screen: 'AddQuiz'})}/>
           </ListItem>
         </View>
       </View>

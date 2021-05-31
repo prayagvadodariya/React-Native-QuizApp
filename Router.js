@@ -7,6 +7,7 @@ import Colours from './src/Screens/Colours';
 import Setting from './src/Screens/Setting';
 import QuizDashboard from './src/Screens/QuizDashboard';
 import Score from './src/Screens/Score';
+import AddQuiz from './src/Screens/AddQuiz';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import { AntDesign, Entypo, Ionicons, Feather, EvilIcons } from 'react-native-vector-icons';
 
@@ -78,12 +79,21 @@ const MyStack = () => {
   )
 }
 
+const UserAddQuiz = () =>{
+  return (
+    <Stack.Navigator initialRouteName="AddQuiz">
+      <Stack.Screen options={{headerTitleAlign: 'center',headerStyle: {backgroundColor:'#f2f2f2'}}}  name="User Add New Quiz" component={AddQuiz} />
+    </Stack.Navigator>
+  )
+}
+
 const Router = () => {
     return (
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
           <Stack.Screen options={{headerLeft:false, headerRight: false, headerTitle: false, headerStyle: false, headerTransparent: true}} name="BottomTabStack" component={BottomTabStack} />
           <Stack.Screen options={{headerLeft:false, headerRight: false, headerTitle: false, headerStyle: false, headerTransparent: true}} name="MyStack" component={MyStack} />
+          <Stack.Screen options={{headerLeft:false, headerRight: false, headerTitle: false, headerStyle: false, headerTransparent: true}} name="UserAddQuiz" component={UserAddQuiz} />
         </Stack.Navigator>
       </NavigationContainer>
     );
