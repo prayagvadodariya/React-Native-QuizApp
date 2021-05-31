@@ -8,6 +8,7 @@ import Setting from './src/Screens/Setting';
 import QuizDashboard from './src/Screens/QuizDashboard';
 import Score from './src/Screens/Score';
 import AddQuiz from './src/Screens/AddQuiz';
+import Add_Quiz_Categories from './src/Screens/Add_Quiz_Categories';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import { AntDesign, Entypo, Ionicons, Feather, EvilIcons } from 'react-native-vector-icons';
 
@@ -81,8 +82,16 @@ const MyStack = () => {
 
 const UserAddQuiz = () =>{
   return (
-    <Stack.Navigator initialRouteName="AddQuiz">
+    <Stack.Navigator>
       <Stack.Screen options={{headerTitleAlign: 'center',headerStyle: {backgroundColor:'#f2f2f2'}}}  name="User Add New Quiz" component={AddQuiz} />
+    </Stack.Navigator>
+  )
+}
+
+const AddQuizCategories = () =>{
+  return (
+    <Stack.Navigator>
+      <Stack.Screen options={{headerTitleAlign: 'center',headerStyle: {backgroundColor:'#f2f2f2'}}} name="Add Quiz Categories" component={Add_Quiz_Categories}/>
     </Stack.Navigator>
   )
 }
@@ -94,6 +103,7 @@ const Router = () => {
           <Stack.Screen options={{headerLeft:false, headerRight: false, headerTitle: false, headerStyle: false, headerTransparent: true}} name="BottomTabStack" component={BottomTabStack} />
           <Stack.Screen options={{headerLeft:false, headerRight: false, headerTitle: false, headerStyle: false, headerTransparent: true}} name="MyStack" component={MyStack} />
           <Stack.Screen options={{headerLeft:false, headerRight: false, headerTitle: false, headerStyle: false, headerTransparent: true}} name="UserAddQuiz" component={UserAddQuiz} />
+          <Stack.Screen options={{headerLeft:false, headerRight: false, headerTitle: false, headerStyle: false, headerTransparent: true}} name="AddQuizCategories" component={AddQuizCategories} />
         </Stack.Navigator>
       </NavigationContainer>
     );

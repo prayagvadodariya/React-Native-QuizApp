@@ -7,6 +7,8 @@ import firebase from '../services/firebaseServices';
 
 const Home = (props) => {
 
+  console.log(props);
+
   useEffect(() => {
     const dbRef = firebase.database().ref();
     dbRef.child("quizList").get().then((snapshot) => {
@@ -70,8 +72,8 @@ const Home = (props) => {
           <Text style={{fontSize:20, fontWeight:'bold'}}>Top Quiz Categories</Text>
           <View style={{flex:1,alignContent:'flex-end',alignItems:'flex-end'}}>
             <Button
-            onPress={() => AddQuiz()}
-            title="View All"
+            onPress={() => props.navigation.navigate("AddQuizCategories")}
+            title="ADD"
             type="outline"
             titleStyle={{fontSize:12, fontWeight:'bold'}}
             buttonStyle={{borderRadius:7,width:70,height:25, marginTop:2}}

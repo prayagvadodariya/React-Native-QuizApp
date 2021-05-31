@@ -3,28 +3,16 @@ import React, {useState, useEffect} from 'react';
 import { StyleSheet, SafeAreaView, TextInput, Text, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import firebase from '../services/firebaseServices';
-// import ModalDropdown from 'react-native-modal-dropdown';
 
 
 const AddQuiz = () => {
   const [quizselect, onQuizselect] = useState();
-  const [quiztitile, onQuizTitle] = useState('');
   const [question, onQuestion] = useState('');
   const [optionA, onOptionA] = useState('');
   const [optionB, onOptionB] = useState('');
   const [optionC, onOptionC] = useState('');
   const [optionD, onOptionD] = useState('');
   const [correctAnswer, onCorrectAnswer] = useState('');
-
-
-  const data = [{
-    value: 'Banana',
-  }, {
-    value: 'Mango',
-  }, {
-    value: 'Pear',
-  }];
-
 
   useEffect(() => {
     const dbRef = firebase.database().ref();
@@ -43,7 +31,7 @@ const AddQuiz = () => {
 
   const onAddNewQuiz = () => {
    var  data = {
-    title: quiztitile,
+    // title: quiztitile,
     question: question,
     "0" : optionA,
     "1" : optionB,
@@ -106,14 +94,7 @@ const AddQuiz = () => {
     <SafeAreaView style={styles.container}>
       <View style={styles.layout}>
 
-        
-        
-          <Dropdown
-          label='Favorite Fruit'
-          data={data}
-          />
-        
-
+      
         <View>
           <Text style={styles.t1}>Question</Text>
           <TextInput
