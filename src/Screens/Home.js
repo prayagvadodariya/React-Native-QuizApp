@@ -20,7 +20,7 @@ const Home = (props) => {
     }).catch((error) => {
       console.error(error);
     });
-  },[])
+  },[props])
 
 
   // const AddQuiz = () => {

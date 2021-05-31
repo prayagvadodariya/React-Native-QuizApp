@@ -24,7 +24,6 @@ const Add_Quiz_Categories = (props) => {
 
 
   const onAddQuizCategories = () => {
-    // title: quiztitile,
     firebase
     .database()
     .ref('quizList/' + new Date().valueOf())
@@ -32,7 +31,7 @@ const Add_Quiz_Categories = (props) => {
       title: quiztitile,  
       image: require('../assets/images/1.png'),
     });
-    props.navigation.navigate("AddQuizCategories")
+    props.navigation.navigate("BottomTabStack")
   }
 
   return (
