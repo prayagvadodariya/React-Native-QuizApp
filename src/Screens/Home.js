@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {Component, useEffect, useState} from 'react';
-import { FlatList, StyleSheet, Text, View, Image, ImageBackground, SafeAreaView, TouchableOpacity, Dimensions} from 'react-native';
+import { FlatList, StyleSheet, Text, View, Image, ImageBackground, SafeAreaView, TouchableOpacity, Dimensions, ScrollView} from 'react-native';
 import { Avatar ,ListItem, Button} from "react-native-elements";
 import * as StaticData  from '../constant/StaticData';
 import firebase from '../services/firebaseServices';
@@ -40,7 +40,7 @@ const renderItem = (item) => {
 }
   
   return (
-    <SafeAreaView>
+    <ScrollView>
       <View style={styles.userLayout}>
         <View style={{marginTop:"12%"}}>
           <ListItem containerStyle={{backgroundColor:'transparent'}}>
@@ -91,7 +91,7 @@ const renderItem = (item) => {
         </TouchableOpacity>
         }
       />
-    </SafeAreaView>
+    </ScrollView>
   );
 }
 
