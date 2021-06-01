@@ -12,6 +12,8 @@ const QuizDashboard = (props) => {
   const [isquestion, setQuestion] = useState(1);
   const [istotalcorrectAns, setTotalCorrectAns] = useState(0);
 
+  // console.log("props", props.route.params);
+
   const onselect = (val) => {
     setSelection(val.id);
     console.log('onselect',val);
@@ -36,11 +38,11 @@ const QuizDashboard = (props) => {
       setTotalCorrectAns(iscorrectCount+istotalcorrectAns)
       setCorrectCount(0)
       var Ans = iscorrectCount+istotalcorrectAns;
-      props.navigation.navigate("MyStack",{ screen: 'Score',params: {Total: props.route.params.quizname.Quiz.length, CorrectAns: Ans}});
+      props.navigation.navigate("MyStack",{ screen: 'Score',params: {Total: props.route.params.quiz.length, CorrectAns: Ans}});
     }
   }
 
-  const data = props.route.params.quizname.Quiz;
+  const data = props.route.params.quiz;
   const question = data[isactiveQuestionIndex];
 
   return (
@@ -58,7 +60,7 @@ const QuizDashboard = (props) => {
           timeLabels={{m: 'Min', s: 'Sec'}}
           timeLabelStyle={{color: '#fff', fontSize:15}}
         />
-        <Text style={{fontSize:18,color:'#585e77'}}>{props.route.params.quizname.title} Quiz</Text>
+        <Text style={{fontSize:18,color:'#585e77'}}>{props.route.params.quizname} Quiz</Text>
 
         <View style={{marginTop:10,flexDirection:'row'}}>
           <Text style={{fontSize:25, color:'#fff', fontWeight:'bold'}}>Quetion {isquestion}</Text>

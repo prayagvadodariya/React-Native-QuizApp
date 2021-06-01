@@ -1,19 +1,26 @@
 import { StatusBar } from 'expo-status-bar';
-import React, {Component, useEffect} from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import { FlatList, StyleSheet, Text, View, Image, ImageBackground, SafeAreaView, TouchableOpacity, Dimensions} from 'react-native';
 import { Avatar ,ListItem, Button} from "react-native-elements";
 import * as StaticData  from '../constant/StaticData';
 import firebase from '../services/firebaseServices';
 
 const Home = (props) => {
-
+  const[quizList, setQuizList] = useState(null);
   
-
   useEffect(() => {
     const dbRef = firebase.database().ref();
     dbRef.child("quizList").get().then((snapshot) => {
+      console.log("firebasedata",snapshot.val());
       if (snapshot.exists()) {
-        console.log(snapshot.val());
+        var dataArray = [];
+
+        snapshot.forEach(function(snap) {
+          var item = snap.val();
+          dataArray.push(item);
+        });       
+        return setQuizList(dataArray)
+
       } else {
         console.log("No data available");
       }
@@ -23,28 +30,15 @@ const Home = (props) => {
   },[props.route])
 
   
-  console.log(props.route);
-  // const AddQuiz = () => {
-  //   var id = "0"
-  //   firebase
-  //     .database()
-  //     .ref('quizList/' + id)
-  //     .set({
-  //       title: 'Choose1',  
-  //       image: require('../assets/images/1.png'),
-  //       Quiz:
-  //         {
-  //           question: "What is localhost's IP address?",
-  //           answers: {
-  //            "0" : { id: "1", text: "192.168.1.1" },
-  //            "1" : { id: "2", text: "127.0.0.1", correct: true },
-  //            "2" : { id: "3", text: "209.85.231.104" },
-  //            "3" : { id: "4", text: "66.220.149.25" }
-  //           }
-  //         }
-  //     });
-  // }
-
+ 
+const renderItem = (item) => {
+  var arr_obj = Object.keys(item).map(key => ({ 
+    answers: item[key].answers,
+    question: item[key].question 
+  }));
+  return arr_obj;
+}
+  
   return (
     <SafeAreaView>
       <View style={styles.userLayout}>
@@ -85,13 +79,13 @@ const Home = (props) => {
 
       <FlatList
         numColumns={3}
-        data={StaticData.QuizList}  
+        data={quizList}  
         style={{marginBottom:20}}
         keyExtractor={(item, index) => String(index)} 
         renderItem={({item}) => 
-        <TouchableOpacity style={{width: Dimensions.get('screen').width / 3 - 20, borderRadius:15, margin: 10, height:120, backgroundColor:'#fff'}} onPress={()=> props.navigation.navigate("MyStack",{ screen: 'QuizDashboard',params: {quizname: item}})}> 
+        <TouchableOpacity style={{width: Dimensions.get('screen').width / 3 - 20, borderRadius:15, margin: 10, height:120, backgroundColor:'#fff'}} onPress={()=> props.navigation.navigate("MyStack",{ screen: 'QuizDashboard',params: {quizname: item.title, quiz: renderItem(item.Quiz) }})}> 
           <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-            <Image style={{ marginTop:12, width:40,height:40}}   source={item.image} />
+            <Image style={{ marginTop:12, width:40,height:40}}   source={require('../assets/images/2.png')} />
           </View>
           <Text style={{paddingRight:10, paddingLeft:10, marginBottom:15, textAlign:"center", color:'gray', fontSize:15, fontWeight:"bold" }}>{item.title}</Text>  
         </TouchableOpacity>
