@@ -1,11 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, SafeAreaView, TextInput, Text, View } from 'react-native';
+import { StyleSheet, SafeAreaView, Picker, TextInput, Text, Dimensions, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import firebase from '../services/firebaseServices';
 
-
-const AddQuiz = () => {
+const AddQuiz = (props) => {
   const [quizselect, onQuizselect] = useState();
   const [question, onQuestion] = useState('');
   const [optionA, onOptionA] = useState('');
@@ -13,13 +12,27 @@ const AddQuiz = () => {
   const [optionC, onOptionC] = useState('');
   const [optionD, onOptionD] = useState('');
   const [correctAnswer, onCorrectAnswer] = useState('');
+  const [selectedValue, setSelectedValue] = useState();
+
+  
 
   useEffect(() => {
     const dbRef = firebase.database().ref();
     dbRef.child("quizList").get().then((snapshot) => {
       if (snapshot.exists()) {
-        onQuizselect(snapshot.val());
-        var t = new Date().valueOf();
+        // onQuizselect(snapshot.val());
+        var dataArray = [];
+
+        snapshot.forEach(function(snap) {
+          var item = snap.val();
+          item.key = snap.key;
+
+          dataArray.push(item);
+        });
+        setSelectedValue(dataArray[0].key)
+       
+        return onQuizselect(dataArray)   
+
       } else {
         console.log("No data available");
       }
@@ -33,10 +46,10 @@ const AddQuiz = () => {
    var  data = {
     // title: quiztitile,
     question: question,
-    "0" : optionA,
-    "1" : optionB,
-    "2" : optionC,
-    "3" : optionD,
+    0 : optionA,
+    1 : optionB,
+    2 : optionC,
+    3 : optionD,
     answers: correctAnswer,
    } 
   //  console.log('add quiz',data);
@@ -75,25 +88,39 @@ const AddQuiz = () => {
         "3" : { id: "4", text: data[3], correct: true }
        }
     }
+    var categories_id = selectedValue.toString()
     firebase
       .database()
-      .ref('quizList/' + new Date().valueOf())
+      .ref('quizList/' + categories_id + '/Quiz/' + new Date().valueOf())
       .set({
-        // title: data.title,  
-        // image: require('../assets/images/1.png'),
-        Quiz:
-          {
-            question: data.question,
-            answers: answers
-          }
+        question: data.question,
+        answers: answers
       });
-    
+      props.navigation.navigate("BottomTabStack", { screen: 'Home',params: {first: 'add'}})
   }
-
+ 
+ if(!quizselect){
+   return(
+  <Text>LOADING</Text>
+   )
+ }
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.layout}>
 
+      <View style={styles.picker}>
+      <Picker
+        selectedValue={selectedValue}
+        style={{ height: 50, borderRadius:10, paddingLeft:5}}
+        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+      >
+        {quizselect.map((item,i) => {
+        return(<Picker.Item label={item.title} value={item.key} key={i}/>)
+        })}
+      </Picker>
+      </View>
+
+       
       
         <View>
           <Text style={styles.t1}>Question</Text>
@@ -176,6 +203,13 @@ const styles = StyleSheet.create({
   },
   layout: {
     flex: 1,
+  },
+  picker: {
+    flex: 1,
+    marginLeft:20,
+    marginRight:20, 
+    marginTop:20,
+    width:'auto' 
   },
   t1: {
     marginTop:20,
