@@ -31,7 +31,7 @@ const Add_Quiz_Categories = (props) => {
       title: quiztitile,  
       image: require('../assets/images/1.png'),
     });
-    props.navigation.navigate("BottomTabStack")
+    props.navigation.navigate("BottomTabStack", { screen: 'Home',params: {first: 'add'}})
   }
 
   return (

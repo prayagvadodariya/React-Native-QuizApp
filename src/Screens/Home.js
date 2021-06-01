@@ -7,7 +7,7 @@ import firebase from '../services/firebaseServices';
 
 const Home = (props) => {
 
-  console.log(props);
+  
 
   useEffect(() => {
     const dbRef = firebase.database().ref();
@@ -20,9 +20,10 @@ const Home = (props) => {
     }).catch((error) => {
       console.error(error);
     });
-  },[props])
+  },[props.route])
 
-
+  
+  console.log(props.route);
   // const AddQuiz = () => {
   //   var id = "0"
   //   firebase

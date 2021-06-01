@@ -99,7 +99,7 @@ const AddQuizCategories = () =>{
 const Router = () => {
     return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
+        <Stack.Navigator initialRouteName="BottomTabStack">
           <Stack.Screen options={{headerLeft:false, headerRight: false, headerTitle: false, headerStyle: false, headerTransparent: true}} name="BottomTabStack" component={BottomTabStack} />
           <Stack.Screen options={{headerLeft:false, headerRight: false, headerTitle: false, headerStyle: false, headerTransparent: true}} name="MyStack" component={MyStack} />
           <Stack.Screen options={{headerLeft:false, headerRight: false, headerTitle: false, headerStyle: false, headerTransparent: true}} name="UserAddQuiz" component={UserAddQuiz} />
