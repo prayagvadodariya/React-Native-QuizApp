@@ -10,7 +10,7 @@ import * as ImagePicker from 'expo-image-picker';
 const Add_Quiz_Categories = (props) => {
   const [quiztitile, onQuizTitle] = useState('');
   const [image, setImage] = useState(null);
-
+ 
   useEffect(() => {
     const dbRef = firebase.database().ref();
     dbRef.child("quizList").get().then((snapshot) => {
@@ -38,7 +38,6 @@ const Add_Quiz_Categories = (props) => {
     const ref = firebase.storage().ref().child(quiztitile);
     var url =   result.uri
     ref.putString(url, 'data_url').then((snapshot) => {
-      console.log(snapshot,'Uploaded a data_url string!');
     });
 
       setImage(result.uri);
@@ -46,15 +45,18 @@ const Add_Quiz_Categories = (props) => {
   };
 
   const onAddQuizCategories = () => {
-  
-    // firebase
-    // .database()
-    // .ref('quizList/' + new Date().valueOf())
-    // .set({
-    //   title: quiztitile,  
-    //   image: image,
-    // });
-    props.navigation.navigate("BottomTabStack", { screen: 'Home',params: {first: 'add'}})
+    const storageRef = firebase.storage().ref();
+    storageRef.child(quiztitile).getDownloadURL()
+    .then((url) => {
+      console.log("down",url)
+      firebase.database()
+      .ref('quizList/' + new Date().valueOf())
+      .set({
+        title: quiztitile,  
+        image: url,
+      });
+      props.navigation.navigate("BottomTabStack", { screen: 'Home',params: {first: 'add'}})
+      })
   }
 
   return (
