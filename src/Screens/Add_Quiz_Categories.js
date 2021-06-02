@@ -35,12 +35,13 @@ const Add_Quiz_Categories = (props) => {
     console.log(result);
 
     if (!result.cancelled) {
+      setImage(result.uri);
     const ref = firebase.storage().ref().child(quiztitile);
     var url =   result.uri
     ref.putString(url, 'data_url').then((snapshot) => {
     });
 
-      setImage(result.uri);
+     
     }
   };
 
@@ -60,9 +61,7 @@ const Add_Quiz_Categories = (props) => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
       <View style={styles.layout}>
-
         <View>
           <Text style={styles.t1}>Add Quiz Title</Text>
           <TextInput
@@ -95,14 +94,10 @@ const Add_Quiz_Categories = (props) => {
         </View>
 
       </View>
-    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   layout: {
     flex: 1,
   },

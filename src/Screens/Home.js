@@ -42,8 +42,8 @@ const renderItem = (item) => {
   return (
     <ScrollView>
       <View style={styles.userLayout}>
-        <View style={{marginTop:"12%"}}>
-          <ListItem containerStyle={{backgroundColor:'transparent'}}>
+        <View style={{marginTop:20}}>
+          <ListItem onPress={()=> props.navigation.navigate("UserAddQuiz",{ screen: 'AddQuiz'})} containerStyle={{backgroundColor:'transparent'}}>
           <Avatar
             rounded
             size={40}
@@ -53,7 +53,7 @@ const renderItem = (item) => {
           <ListItem.Content>
             <ListItem.Title style={{color:'#fff', fontWeight:'bold'}}>Michael Lawson</ListItem.Title>
           </ListItem.Content>
-          <ListItem.Chevron onPress={()=> props.navigation.navigate("UserAddQuiz",{ screen: 'AddQuiz'})}/>
+          <ListItem.Chevron/>
           </ListItem>
         </View>
       </View>
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     height:210,
     backgroundColor:'#000',
     borderRadius:15,
-    marginTop:-100
+    marginTop:-115
   },
   titlequiz: {
     marginTop:5,

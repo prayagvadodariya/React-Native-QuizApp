@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, SafeAreaView, Picker, TextInput, Text, Dimensions, View } from 'react-native';
+import { StyleSheet, SafeAreaView, Picker, TextInput, Text, Dimensions, View, ScrollView } from 'react-native';
 import { Button } from 'react-native-elements';
 import firebase from '../services/firebaseServices';
 
@@ -13,9 +13,7 @@ const AddQuiz = (props) => {
   const [optionD, onOptionD] = useState('');
   const [correctAnswer, onCorrectAnswer] = useState('');
   const [selectedValue, setSelectedValue] = useState();
-
   
-
   useEffect(() => {
     const dbRef = firebase.database().ref();
     dbRef.child("quizList").get().then((snapshot) => {
@@ -105,23 +103,21 @@ const AddQuiz = (props) => {
    )
  }
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.layout}>
+      <ScrollView style={styles.layout}>
 
-      <View style={styles.picker}>
-      <Picker
-        selectedValue={selectedValue}
-        style={{ height: 50, borderRadius:10, paddingLeft:5}}
-        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
-      >
-        {quizselect.map((item,i) => {
-        return(<Picker.Item label={item.title} value={item.key} key={i}/>)
-        })}
-      </Picker>
-      </View>
+        <View style={styles.picker}>
+          <Text style={styles.t1}>Select Quiz Categories</Text>
+          <Picker
+            selectedValue={selectedValue}
+            style={{ height: 50, borderRadius:10, paddingLeft:5, marginLeft:15}}
+            onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+          >
+            {quizselect.map((item,i) => {
+            return(<Picker.Item label={item.title} value={item.key} key={i}/>)
+            })}
+          </Picker>
+        </View>
 
-       
-      
         <View>
           <Text style={styles.t1}>Question</Text>
           <TextInput
@@ -188,12 +184,11 @@ const AddQuiz = (props) => {
             type="solid"
             onPress={()=> onAddNewQuiz()}
             titleStyle={{textAlign:'center'}}
-            buttonStyle={{borderRadius:10, marginBottom:10, marginTop:15, backgroundColor:'#06d3f7'}}
+            buttonStyle={{borderRadius:10, marginBottom:15, marginTop:15, backgroundColor:'#06d3f7'}}
           />
         </View>
 
-      </View>
-    </SafeAreaView>
+      </ScrollView>
   );
 }
 
@@ -206,9 +201,6 @@ const styles = StyleSheet.create({
   },
   picker: {
     flex: 1,
-    marginLeft:20,
-    marginRight:20, 
-    marginTop:20,
     width:'auto' 
   },
   t1: {

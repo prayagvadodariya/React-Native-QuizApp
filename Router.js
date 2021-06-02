@@ -1,4 +1,5 @@
 import React from 'react';
+import { TouchableOpacity } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Home from './src/Screens/Home';
@@ -83,7 +84,7 @@ const MyStack = () => {
 const UserAddQuiz = () =>{
   return (
     <Stack.Navigator>
-      <Stack.Screen options={{headerTitleAlign: 'center',headerStyle: {backgroundColor:'#f2f2f2'}}}  name="User Add New Quiz" component={AddQuiz} />
+      <Stack.Screen options={{headerLeft:false, headerRight: false, headerTitle: false, headerStyle: false, headerTransparent: true}}  name="User Add New Quiz" component={AddQuiz} />
     </Stack.Navigator>
   )
 }
@@ -91,7 +92,7 @@ const UserAddQuiz = () =>{
 const AddQuizCategories = () =>{
   return (
     <Stack.Navigator>
-      <Stack.Screen options={{headerTitleAlign: 'center',headerStyle: {backgroundColor:'#f2f2f2'}}} name="Add Quiz Categories" component={Add_Quiz_Categories}/>
+      <Stack.Screen options={{headerLeft:false, headerRight: false, headerTitle: false, headerStyle: false, headerTransparent: true}} name="Add Quiz Categories" component={Add_Quiz_Categories}/>
     </Stack.Navigator>
   )
 }
@@ -102,8 +103,8 @@ const Router = () => {
         <Stack.Navigator initialRouteName="BottomTabStack">
           <Stack.Screen options={{headerLeft:false, headerRight: false, headerTitle: false, headerStyle: false, headerTransparent: true}} name="BottomTabStack" component={BottomTabStack} />
           <Stack.Screen options={{headerLeft:false, headerRight: false, headerTitle: false, headerStyle: false, headerTransparent: true}} name="MyStack" component={MyStack} />
-          <Stack.Screen options={{headerLeft:false, headerRight: false, headerTitle: false, headerStyle: false, headerTransparent: true}} name="UserAddQuiz" component={UserAddQuiz} />
-          <Stack.Screen options={{headerLeft:false, headerRight: false, headerTitle: false, headerStyle: false, headerTransparent: true}} name="AddQuizCategories" component={AddQuizCategories} />
+          <Stack.Screen name="UserAddQuiz" component={UserAddQuiz} />
+          <Stack.Screen name="AddQuizCategories" component={AddQuizCategories} />
         </Stack.Navigator>
       </NavigationContainer>
     );
