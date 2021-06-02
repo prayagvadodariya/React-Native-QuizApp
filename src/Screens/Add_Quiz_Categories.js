@@ -61,6 +61,7 @@ const Add_Quiz_Categories = (props) => {
   }
 
   return (
+    <SafeAreaView>
       <View style={styles.layout}>
         <View>
           <Text style={styles.t1}>Add Quiz Title</Text>
@@ -94,6 +95,7 @@ const Add_Quiz_Categories = (props) => {
         </View>
 
       </View>
+      </SafeAreaView>
   );
 }
 

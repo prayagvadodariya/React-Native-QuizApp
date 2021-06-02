@@ -42,7 +42,7 @@ const renderItem = (item) => {
   return (
     <ScrollView>
       <View style={styles.userLayout}>
-        <View style={{marginTop:20}}>
+        <View style={{marginTop:"13%"}}>
           <ListItem onPress={()=> props.navigation.navigate("UserAddQuiz",{ screen: 'AddQuiz'})} containerStyle={{backgroundColor:'transparent'}}>
           <Avatar
             rounded
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     height:210,
     backgroundColor:'#000',
     borderRadius:15,
-    marginTop:-115
+    marginTop:-100
   },
   titlequiz: {
     marginTop:5,
