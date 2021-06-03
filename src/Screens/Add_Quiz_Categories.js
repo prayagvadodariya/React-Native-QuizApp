@@ -36,14 +36,17 @@ const Add_Quiz_Categories = (props) => {
 
     if (!result.cancelled) {
       setImage(result.uri);
-    const ref = firebase.storage().ref().child(quiztitile);
-    var url =   result.uri
-    ref.putString(url, 'data_url').then((snapshot) => {
-    });
-
-     
+      uploadImage(result.uri);   
     }
   };
+
+  const uploadImage = async (uri) => {
+    const response = await fetch(uri);
+    const blob = await response.blob();
+
+    var ref = firebase.storage().ref().child(quiztitile);
+    return ref.put(blob);
+  }
 
   const onAddQuizCategories = () => {
     const storageRef = firebase.storage().ref();

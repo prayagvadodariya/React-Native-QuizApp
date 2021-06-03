@@ -85,7 +85,7 @@ const renderItem = (item) => {
         renderItem={({item}) => 
         <TouchableOpacity style={{width: Dimensions.get('screen').width / 3 - 20, borderRadius:15, margin: 10, height:120, backgroundColor:'#fff'}} onPress={()=> props.navigation.navigate("MyStack",{ screen: 'QuizDashboard',params: {quizname: item.title, quiz: renderItem(item.Quiz) }})}> 
           <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-            <Image style={{ marginTop:12, width:40,height:40}}   source={require('../assets/images/2.png')} />
+            <Image style={{ marginTop:12, width:40,height:40}} source={{ uri: item.image }} />
           </View>
           <Text style={{paddingRight:10, paddingLeft:10, marginBottom:15, textAlign:"center", color:'gray', fontSize:15, fontWeight:"bold" }}>{item.title}</Text>  
         </TouchableOpacity>
