@@ -92,7 +92,7 @@ import { AntDesign, Entypo, Ionicons, Feather, EvilIcons } from 'react-native-ve
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#19203c'
+    backgroundColor: '#241b49'
   }
 });
 

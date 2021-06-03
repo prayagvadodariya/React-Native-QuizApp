@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   userLayout: {
     width:'100%',
     height:215,
-    backgroundColor:'#292a30',
+    backgroundColor:'#241b49',
     borderRadius:25,
     marginTop:-20
   },
